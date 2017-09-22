@@ -1,7 +1,7 @@
 #!/bin/bash
-
+# EMAIL=kat PASSWORD=kat PASSWORD=kat sh scripts/sign-up.sh
 API="${API_ORIGIN:-http://localhost:4741}"
-URL_PATH="/sign-in"
+URL_PATH="/sign-up"
 curl "${API}${URL_PATH}" \
   --include \
   --request POST \
