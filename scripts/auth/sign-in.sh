@@ -1,6 +1,6 @@
 #!/bin/bash
-# EMAIL=kat PASSWORD=kat PASSWORD=kat sh scripts/sign-in.sh
-API="${API_ORIGIN:-http://localhost:4741}"
+# EMAIL=kat PASSWORD=kat sh scripts/auth/sign-in.sh
+API="${API_ORIGIN:-https://faverestaurants.herokuapp.com}"
 URL_PATH="/sign-in"
 curl "${API}${URL_PATH}" \
   --include \
@@ -9,8 +9,7 @@ curl "${API}${URL_PATH}" \
   --data '{
     "credentials": {
       "email": "'"${EMAIL}"'",
-      "password": "'"${PASSWORD}"'",
-      "password_confirmation": "'"${PASSWORD}"'"
+      "password": "'"${PASSWORD}"'"
     }
   }'
 

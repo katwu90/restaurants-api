@@ -1,5 +1,5 @@
 class RestaurantsController < OpenReadController
-  before_action :set_restaurant, only: [:show, :update, :destroy]
+  before_action :set_restaurant, only: [:update, :destroy]
 
   # GET /restaurants
   def index
@@ -10,15 +10,15 @@ class RestaurantsController < OpenReadController
 
   # GET /restaurants/1
   def show
-    render json: @restaurant
+    render json: Restaurant.find(params[:id])
   end
 
   # POST /restaurants
   def create
-    @restaurant = current_user.restaurants.new(restaurant_params)
+    @restaurant = current_user.restaurants.build(restaurant_params)
 
     if @restaurant.save
-      render json: @restaurant, status: :created, location: @restaurant
+      render json: @restaurant, status: :created
     else
       render json: @restaurant.errors, status: :unprocessable_entity
     end
@@ -36,6 +36,8 @@ class RestaurantsController < OpenReadController
   # DELETE /restaurants/1
   def destroy
     @restaurant.destroy
+
+    head :no_content
   end
 
   private
