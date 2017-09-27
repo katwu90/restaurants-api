@@ -1,16 +1,16 @@
-class RestaurantsController < OpenReadController
-  before_action :set_restaurant, only: [:update, :destroy]
+class RestaurantsController < ProtectedController
+  before_action :set_restaurant, only: [:show, :update, :destroy]
 
   # GET /restaurants
   def index
-    @restaurants = Restaurant.all
+    @restaurants = current_user.restaurants.all
 
     render json: @restaurants
   end
 
   # GET /restaurants/1
   def show
-    render json: Restaurant.find(params[:id])
+    render json: @restaurant
   end
 
   # POST /restaurants
